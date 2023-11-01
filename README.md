@@ -52,5 +52,5 @@ These instructions will get you a copy of the project up and running on your loc
     uvicorn posts.web.main:app
     ```
 
-Now, you can visit `http://localhost:8000` in your browser to view the application.
+Now, you can visit `http://localhost:8000/docs` in your browser to view and test the api.
 
