@@ -1,9 +1,19 @@
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from sqlalchemy.sql import func  # Import func to use UTC timestamps
-from ..database import Base
-from datetime import datetime
+from sqlalchemy.orm import declarative_base
+from . import engine
 
-class Post(Base):
+from .utils import IPost
+
+
+
+Base = declarative_base()
+
+class FinalMeta(type(Base), type(IPost)):
+    pass
+
+
+class Post(IPost, Base, metaclass=FinalMeta):
     __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
@@ -16,3 +26,9 @@ class Post(Base):
     def update(self, **kwargs):
         for key, value in kwargs.items():
             setattr(self, key, value)
+
+    def dict(self):
+        print(self.__dict__)
+        return self.__dict__
+   
+Base.metadata.create_all(bind=engine)
