@@ -42,9 +42,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Running the Application
 
-1. Navigate to the `posts` directory:
+1. Navigate to the `api` directory:
     ```bash
-    cd posts
+    cd api
     ```
 
 2. Run the application:
